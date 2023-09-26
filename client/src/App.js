@@ -1,11 +1,13 @@
-import logo from './logo.svg';
+
 import './App.css';
+import PostForm from './Components/PostForm';
+import PostList from './Components/PostList';
 
 function App() {
   return (
     <div className="App">
-      hel owrls 
-      skdfi ubsg 
+      <div><PostForm/></div>
+      <PostList/>
     </div>
   );
 }
