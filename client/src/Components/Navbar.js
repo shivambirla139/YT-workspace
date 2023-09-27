@@ -2,6 +2,7 @@ import { AppBar, Toolbar, styled } from '@mui/material';
 
 import { NavLink } from 'react-router-dom';
 import {React,useEffect,useState} from 'react';
+import { getUserData } from '../services/api';
 
 const Header = styled(AppBar)`
     background: #111111;
@@ -14,20 +15,25 @@ const Tabs = styled(NavLink)`
     font-size: 20px;
 `;
 
-const NavBar = () => {
-    const [accessToken,setAccessToken] = useState(null);
-
-    useEffect(()=>{
-        const useraccesstoken = localStorage.getItem('useraccesstoken');
-        setAccessToken(useraccesstoken);
-    },[]);
+const NavBar = ({user}) => {
+    
     
     return (
         <Header position="static">
-            <Toolbar>
+            {
+                user==null
+                 ?
+             
+                (<Toolbar>
                 <Tabs to="/login" exact>Login</Tabs>
                 <Tabs to="/signup" exact>SignUp</Tabs>
-            </Toolbar>
+                </Toolbar>)
+                :
+                (<h1> aw</h1>)
+
+                    
+
+            }
         </Header>
     )
 }

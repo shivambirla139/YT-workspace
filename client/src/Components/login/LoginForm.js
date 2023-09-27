@@ -14,7 +14,7 @@ const loginInitialValues = {
     password: ''
 };
 
-const LoginForm = () => {
+const LoginForm = ({changeStates}) => {
     const [login, setLogin] = useState(loginInitialValues);
     const [showPassword, setShowPassword] = useState(false);
     const [error, showError] = useState('');
@@ -35,6 +35,7 @@ const LoginForm = () => {
             sessionStorage.setItem('useraccesstoken', JSON.stringify(response.data));
             
             setLogin(loginInitialValues);
+            changeStates(response.data);
             
             navigate('/');
             return;
