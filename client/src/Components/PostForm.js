@@ -1,16 +1,23 @@
 import {React, useState} from 'react';
 import axios from 'axios';
 
-function PostForm(){
+function PostForm({addData}){
 
     const [data,setData] = useState({content:""});
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        axios.post('http://localhost:/8080/api/post',data)
-        .then(result=>{console.log(result)})
-        .catch(result=>{console.log(result)});
-        alert("r");
+        const fun = async ()=>{
+            try{
+                const response = await axios.post('http://localhost:8080/api/post',data);
+                addData(data);
+                console.log(response);
+            }catch (e){
+                console.log(e.message);
+            }
+        
+        }
+        fun();
 
 
     }

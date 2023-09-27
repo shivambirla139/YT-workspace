@@ -1,11 +1,18 @@
-import {React} from 'react';
+import {React, useEffect,useState} from 'react';
+import axios from 'axios';
 
 
-function PostList(){
+function PostList({posts}){
 
     return (
         <>
-            post list 
+            <ul>
+                {
+                    posts.map(post=>{
+                        return <li>{post.content}</li>;
+                    })
+                }
+            </ul>
         </>
     )
     
