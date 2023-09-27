@@ -1,4 +1,3 @@
-
 import './App.css';
 import PostForm from './Components/PostForm';
 import PostList from './Components/PostList';
