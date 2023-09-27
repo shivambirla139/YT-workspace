@@ -47,21 +47,26 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("All fields are mandatory!");
   }
   const user = await User.findOne({ email });
-  //compare password with hashedpassword
-  console.log("dfdf")
   if (user && (await bcrypt.compare(password, user.password))) {
-    const accessToken = jwt.sign(
-      {
-        user: {
-          username: user.username,
-          email: user.email,
-          id: user.id,
+    try{
+      const accessToken = jwt.sign(
+        {
+          user: {
+            username: user.username,
+            email: user.email,
+            id: user._id,
+          },
         },
-      },
-      process.env.ACCESS_TOKEN_SECERT,
-      { expiresIn: "15m" }
-    );
-    res.status(200).json({ accessToken });
+        'JWT_SECRET',
+        { expiresIn: "15m" }
+      );
+      console.log("sdsd")
+      res.status(200).json({ accessToken });
+    }catch (err) {
+      console.log(err);
+      throw new Error("Error! Something went wrong.");
+      
+    }
   } else {
     res.status(401);
     throw new Error("email or password is not valid");
