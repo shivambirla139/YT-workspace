@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { Box, Typography, InputAdornment, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 // css components
 import { Component, Container, AccountBox, InputTextField, StyledButton, Error, StyledText,DisplayText } from './AccountStyles';
@@ -9,15 +10,18 @@ import { Component, Container, AccountBox, InputTextField, StyledButton, Error, 
 import { loginUser } from '../../services/api';
 
 
+
 const loginInitialValues = {
     email: '',
     password: ''
 };
 
-const LoginForm = ({changeStates}) => {
+const LoginForm = () => {
     const [login, setLogin] = useState(loginInitialValues);
     const [showPassword, setShowPassword] = useState(false);
     const [error, showError] = useState('');
+    const dispatch = useDispatch();
+
 
     const navigate = useNavigate();
    
@@ -32,11 +36,11 @@ const LoginForm = ({changeStates}) => {
         const response = await loginUser(login);
         console.log(response);
         if (response.status === 200) {
-            sessionStorage.setItem('useraccesstoken', JSON.stringify(response.data));
-            
+
             setLogin(loginInitialValues);
-            changeStates(response.data);
-            
+
+            dispatch(setLogin({user:login,token:response.data}));
+
             navigate('/');
             return;
         }   

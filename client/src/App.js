@@ -1,17 +1,15 @@
 import './App.css';
-import {React,useEffect,useState} from 'react';
-import axios from 'axios';
+import {React} from 'react';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import NavBar from './Components/Navbar';
 import LoginForm from './Components/login/LoginForm';
 import SignUpForm from './Components/login/SignupForm';
-import { getUserData } from './services/api';
 function App() {
 
   return (
     <div className='App'>
       <BrowserRouter>
-          <NavBar user={user}/>
+          <NavBar />
           <Routes>
             <Route path ="/login" element = {<LoginForm  /> } />
             <Route path ="/signup" element = {<SignUpForm/>}/>
