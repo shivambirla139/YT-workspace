@@ -68,8 +68,8 @@ const loginUser = asyncHandler(async (req, res) => {
         'JWT_SECRET',
         { expiresIn: "15m" }
       );
-      console.log("sdsd")
-      res.status(200).json({ accessToken });
+      delete user.password;
+      res.status(200).json({user,accessToken });
     }catch (err) {
       console.log(err);
       throw new Error("Error! Something went wrong.");

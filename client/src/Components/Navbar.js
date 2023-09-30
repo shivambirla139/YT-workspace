@@ -16,8 +16,6 @@ const Tabs = styled(NavLink)`
 
 const NavBar = () => {
     
-    const {user,token} = useSelector(state => state.user);
-    
     return (
         <Header position="static">
                 <Toolbar>
@@ -25,7 +23,6 @@ const NavBar = () => {
                 <Tabs to="/signup" exact>SignUp</Tabs>
                 </Toolbar>
 
-               { user} <br/> {token}
         </Header>
     )
 }

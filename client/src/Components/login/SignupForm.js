@@ -32,10 +32,10 @@ const SignupForm = () => {
         let response = await signupUser(signup);
         console.log(response);
         if (response.status === 201) {
-            sessionStorage.setItem('user', JSON.stringify(response.data));
+
             setSignup(signupInitialValues);
             
-            navigate('/');
+            navigate('/login');
             return;
         }
         setError(response.data.message);
