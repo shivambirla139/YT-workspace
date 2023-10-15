@@ -5,19 +5,38 @@ import NavBar from './Components/Navbar';
 import LoginForm from './Components/login/LoginForm';
 import SignUpForm from './Components/login/SignupForm';
 import Home from './Components/Home';
-import Posts from "./Components/Posts/Posts"
+import Profile from './Components/login/Profile';
+import Logout from './Components/login/Logout';
+import Posts from "./Components/Posts/Posts";
+import AddPost from './Components/Posts/AddPost';
+import { useSelector } from 'react-redux';
 function App() { 
-  const user = false;
+  const data = useSelector(state => state.user.data);
+  var isAuthenticated ; 
+  if(data && data.data.accessToken){
+    isAuthenticated = true;
+  }else {
+    isAuthenticated = false;
+  }
   return (
     <div className='App'>
          <BrowserRouter>
           <NavBar />
-          <Routes>
-            <Route path ="/login" element = {<LoginForm  /> } />
-            <Route path ="/signup" element = {<SignUpForm/>}/>
+          {isAuthenticated ? (<Routes>
+            <Route path ="/logout" element = {<Logout  /> } />
+            <Route path ="/profile" element = {<Profile  /> } />   
+            <Route path ="/addPost" element = {<AddPost  /> } />            
+
             <Route path = "/" element = {<Home/> } />
-          </Routes>
-          <Posts /> 
+
+          </Routes> ) :
+          (
+            <Routes>
+            <Route path ="/login" element = {<LoginForm  /> } />
+            
+            <Route path ="/signup" element = {<SignUpForm/>}/>
+          </Routes> 
+          )}
       </BrowserRouter>
 
     </div>

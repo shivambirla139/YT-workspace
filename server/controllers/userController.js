@@ -54,11 +54,7 @@ const loginUser = asyncHandler(async (req, res) => {
       return;
     }
     try {
-      console.log("dsd");
-      console.log(email,password);
       const user = await User.findOne({ email });
-      console.log(user);
-      console.log("called");  
       if (user && (await bcrypt.compare(password, user.password))) {
         const accessToken = jwt.sign(
           {

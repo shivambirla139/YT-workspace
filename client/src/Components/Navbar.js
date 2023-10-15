@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, styled } from '@mui/material';
 
 import { NavLink, Navigate } from 'react-router-dom';
-import {React} from 'react';
+import {React, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 const Header = styled(AppBar)`
     background: #111111;
@@ -15,22 +15,25 @@ const Tabs = styled(NavLink)`
 `;
 
 const NavBar = () => {
-    const user = useSelector(state => state.user);
-    if(user.accessToken && user.user ){
-        return (
-            <Header position="static">
-                <Toolbar>
-                <Tabs to="/logout" exact > Logout</Tabs>
-                </Toolbar>
+    const user = useSelector(state => state.user.data);
 
-        </Header>
-        );
-    }
+
     return (
         <Header position="static">
                 <Toolbar>
-                <Tabs to="/login" exact>Login</Tabs>
-                <Tabs to="/signup" exact>SignUp</Tabs>
+                    {user && user.data.accessToken ? 
+                        (<>
+                            <Tabs to="/logout" exact>Logout</Tabs>
+                            <Tabs to="/profile" exact>Profile</Tabs>
+                            <Tabs to="/addpost" exact>Add Post</Tabs>
+
+                        </>)
+                        :
+                            ( <>
+                                <Tabs to="/login" exact>Login</Tabs>
+                                <Tabs to="/signup" exact>SignUp</Tabs>
+                            </>)
+                    }
                 </Toolbar>
 
         </Header>

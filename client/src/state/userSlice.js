@@ -18,9 +18,14 @@ export const userSlice = createSlice({
     loginUserFailure : (state,action)=>{
       state.loading = false;
       state.error = action.payload;
+    },
+    logoutUser: (state,action)=>{
+      state.loading = false;
+      state.error = null;
+      state.data = null;
     }
   }
 });
 
-export const {loginUserStart,loginUserSuccess,loginUserFailure} = userSlice.actions;
+export const {loginUserStart,loginUserSuccess,loginUserFailure,logoutUser} = userSlice.actions;
 export default userSlice.reducer;

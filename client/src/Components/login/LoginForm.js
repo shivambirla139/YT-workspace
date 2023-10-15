@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Box, Typography, InputAdornment, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { loginUserThunk } from '../../state/loginThunk';
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const user = useSelector(state=>state.user.user);
+    const data = useSelector(state=>state.user.data);
     
     const [login, setLogin] = useState({email: '',password: ''});
     const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +24,25 @@ const LoginForm = () => {
     }
     const onLoginButtonClick =  () => {
         dispatch(loginUserThunk(login));
+        
     }
+    useEffect(() => {
+        // Check for changes in data.status and update the error state accordingly
+        if(data){
+            if (data.status !== 200) {
+                showError(data.data.error);
+              } else {
+                // Reset error state if data.status is 200 (no error)
+                showError('');
+              }
+          
+              // Optionally, navigate to a different page upon successful login
+              if (data.status === 200) {
+                navigate('/dashboard'); // Replace '/dashboard' with the desired URL
+              }
+        }
+      }, [data]);
+
 
     const handleShowPassword = () => {
         setShowPassword(prevState => !prevState);
