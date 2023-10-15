@@ -1,8 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Post = require("../models/postModel");
-//@desc Get all contacts
-//@route GET /api/contacts
-//@access private
+
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({});
   res.status(200).json(posts);
@@ -13,12 +11,13 @@ const getPosts = asyncHandler(async (req, res) => {
 //@access private
 const createPost = asyncHandler(async (req, res) => {
   console.log("The request body is :", req.body);
-  const { content } = req.body;
+  const { title , content } = req.body;
   if (!content) {
     res.status(400);
     throw new Error("All fields are mandatory !");
   }
   const post = await Post.create({
+    title , 
     content
   });
 

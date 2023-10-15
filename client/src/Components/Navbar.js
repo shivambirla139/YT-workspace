@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, styled } from '@mui/material';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import {React} from 'react';
 import {useSelector} from 'react-redux';
 const Header = styled(AppBar)`
@@ -15,7 +15,17 @@ const Tabs = styled(NavLink)`
 `;
 
 const NavBar = () => {
-    
+    const user = useSelector(state => state.user);
+    if(user.accessToken && user.user ){
+        return (
+            <Header position="static">
+                <Toolbar>
+                <Tabs to="/logout" exact > Logout</Tabs>
+                </Toolbar>
+
+        </Header>
+        );
+    }
     return (
         <Header position="static">
                 <Toolbar>

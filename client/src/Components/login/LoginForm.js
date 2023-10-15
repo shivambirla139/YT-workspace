@@ -7,13 +7,12 @@ import {useDispatch, useSelector} from 'react-redux';
 // css components
 import { Component, Container, AccountBox, InputTextField, StyledButton, Error, StyledText,DisplayText } from './AccountStyles';
 
-import { loginUserThunk } from '../../state/userSlice';
+import { loginUserThunk } from '../../state/loginThunk';
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const user = useSelector(state=>state.user.user);
-
-
+    
     const [login, setLogin] = useState({email: '',password: ''});
     const [showPassword, setShowPassword] = useState(false);
     const [error, showError] = useState('');

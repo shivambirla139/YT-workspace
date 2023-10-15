@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-import { API_URL_USER } from '../constants/route';
+import { API_URL_USER ,API_URL_POST } from '../constants/route';
 
-
+export const getAllPosts = async () => {
+    try {
+        return await axios.get(`${API_URL_POST}/`);
+    } catch (error) {
+        console.log('Error while calling signup User API ', error);
+        return error.response;
+    }
+}
 export const signupUser = async (data) => {
     try {
         return await axios.post(`${API_URL_USER}/register`, data);

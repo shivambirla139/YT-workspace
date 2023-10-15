@@ -34,9 +34,9 @@ const SignupForm = () => {
         if (response.status === 201) {
 
             setSignup(signupInitialValues);
-            
             navigate('/login');
             return;
+            
         }
         setError(response.data.message);
     }
