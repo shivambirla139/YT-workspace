@@ -24,10 +24,6 @@ const LoginForm = () => {
     }
     const onLoginButtonClick =  () => {
         dispatch(loginUserThunk(login));
-        
-    }
-    useEffect(() => {
-        // Check for changes in data.status and update the error state accordingly
         if(data){
             if (data.status !== 200) {
                 showError(data.data.error);
@@ -36,11 +32,12 @@ const LoginForm = () => {
                 showError('');
               }
           
-              // Optionally, navigate to a different page upon successful login
-              if (data.status === 200) {
-                navigate('/dashboard'); // Replace '/dashboard' with the desired URL
-              }
         }
+        
+    }
+    useEffect(() => {
+        // Check for changes in data.status and update the error state accordingly
+        
       }, [data]);
 
 

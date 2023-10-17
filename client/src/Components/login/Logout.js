@@ -8,9 +8,10 @@ const Logout = ()=>{
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
-    dispatch(logoutUser());
 
     useEffect(()=>{
+        dispatch(logoutUser());
+        
         if(user.data == null){
             navigate('/login');
         }

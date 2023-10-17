@@ -1,0 +1,38 @@
+/* styles.css */
+.post-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.user-info {
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+}
+
+.post-title {
+    color: #007bff;
+}
+
+.post-actions {
+    margin-top: 10px;
+}
+
+.edit-button, .delete-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #0056b3;
+}

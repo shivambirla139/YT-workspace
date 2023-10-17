@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 
-//@desc Register a user
-//@route POST /api/users/register
-//@access public
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
   if (username=='' || email=='' || password=='') {
@@ -43,9 +40,6 @@ const registerUser = asyncHandler(async (req, res) => {
   res.json({ message: "Register the user" });
 });
 
-//@desc Login user
-//@route POST /api/users/login
-//@access publicconst loginUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
   
@@ -80,9 +74,6 @@ const loginUser = asyncHandler(async (req, res) => {
       res.status(500).json({ error: 'Error! Something went wrong.' });
     }
   });
-//@desc Current user info
-//@route POST /api/users/current
-//@access private
 const currentUser = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
 });
